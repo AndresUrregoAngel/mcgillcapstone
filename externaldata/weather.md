@@ -4,9 +4,6 @@
 There is a historical and public dataset called [NOAA GHCND](https://governmentshutdown.noaa.gov/) this public dataset keep the data collection by a broad of temperature stations close to an specific LONGITUDE or LATITUDE you define. In the query below I query the stations collectors close to a fireman station for 20 KM distance for teh year 2018.
 
 
-
-
-
 ##### Query sample
 
 ``` sql
@@ -18,9 +15,23 @@ from `bigquery-public-data.ghcn_d.ghcnd_2018` as data right join (
 where  
  extract(year from data.date) =  2018 
  and closest.distance <= 20  
- and element in ('TMAX','TMIN','TAVG','PRCP','SNOW','SNWD','WSFG','AWDR','AWND','TSUN')   
- OR element like 'WT%' OR element like 'WV%'  
+ and element in ('TMAX','TMIN','TAVG','PRCP','SNOW','SNWD')   
  order by closest.id, data.date 
 
 -- SELECT * FROM firemandb.firemanstations
 ```
+
+#### Measures
+
+For a while I have catch few useful factore metrics that might be interesting for our project. I would like point over:
+
+- TMAX : Maximum temperature on celcius deegres
+- TMIN : Minimum temperature on celcius deegres
+- TAVG : Avarage temperature on celcius deegres
+- PRCP : The possibility of a precipitation
+- SNOW : Snow factor on centimeteers 
+- SNWD : Wind factor
+
+#### Pipeline collection
+
+We could loop on the coordanates by station pulling the years along with the suitable measures. Later we could store the output into a staging dfataset to transform or pivot the table according with our needs and finally join this as external dimension in our model.
