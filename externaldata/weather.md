@@ -35,3 +35,12 @@ For a while I have catch few useful factore metrics that might be interesting fo
 #### Pipeline collection
 
 We could loop on the coordanates by station pulling the years along with the suitable measures. Later we could store the output into a staging dfataset to transform or pivot the table according with our needs and finally join this as external dimension in our model.
+
+#### Sample outoput dimension 
+
+
+This weather dimension will contains the fireman station ID `caserne` in order to join this dimension with the other dimensions of the model to build up a centralized input for the ML model.
+
+|eventdate|caserne|TMAX_mean|TMIN_mean|TAVG_mean|PRCP_mean|SNOW_mean|SNWD_mean|
+|---------|-------|---------|---------|---------|---------|---------|---------|
+|2015-08-23|50|21|10|15|12|0|12|
