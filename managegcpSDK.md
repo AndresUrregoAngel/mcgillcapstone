@@ -15,6 +15,7 @@
 
 ##### Datalab
 - `datalab connect --zone northamerica-northeast1-a --project projectname --no-user-checking vm`
+- `docker exec -it datalab bash` 
 
 
 ##### APIs
